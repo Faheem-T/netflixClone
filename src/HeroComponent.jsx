@@ -8,7 +8,7 @@ const backdrop_size = "original";
 export function HeroComponent({ heroMovie }) {
   return (
     <div
-      className={" bg-left bg-[length:125%]"}
+      className={" bg-top bg-[length:135%]"}
       style={{
         backgroundImage: `url(${secure_base_url}${backdrop_size}${heroMovie.backdrop_path})`,
       }}
