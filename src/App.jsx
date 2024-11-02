@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MovieCard } from "./MovieCard";
 import { Category } from "./Category";
+import { HeroComponent } from "./HeroComponent";
 
 const fetched = false;
 
@@ -9,6 +10,7 @@ export default function App() {
   // if (!fetched) fetchData(setTrending);
   return (
     <>
+      <HeroComponent heroMovie={initialTrending[3]} />
       <Category categoryName={"Trending"} categoryTitles={trending} />
       <Category categoryName={"Trending"} categoryTitles={trending} />
     </>
