@@ -11,22 +11,26 @@ import { LoginPage } from "./LoginPage.jsx";
 import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
 import { UserContext } from "./contexts/UserContext.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Loading } from "./Loading.jsx";
 
 // React Query Client
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 1000 * 60 * 60 } },
 });
-
 export function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
+
+  if (loading) return <Loading />;
 
   return (
     <QueryClientProvider client={queryClient}>

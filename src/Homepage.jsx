@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchNowPlaying, fetchTrending } from "./utils/apiRequests";
 import { useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
+import { Loading } from "./Loading";
 
 export function Home() {
   const { user } = useContext(UserContext);
@@ -18,10 +19,10 @@ export function Home() {
     queryFn: fetchNowPlaying,
   });
   if (trendingQuery.isError) return <div>{trendingQuery.error.json}</div>;
-  if (trendingQuery.isLoading) return <div>Loading...</div>;
+  if (trendingQuery.isLoading) return <Loading />;
 
   if (nowPlaying.isError) return <div>{nowPlaying.error.json}</div>;
-  if (nowPlaying.isLoading) return <div>Loading...</div>;
+  if (nowPlaying.isLoading) return <Loading />;
 
   // Randomly choosing one of the trending titles as the hero title
   const heroTitleId = Math.floor(Math.random() * trendingQuery.data.length);
