@@ -5,7 +5,7 @@ import { fetchNowPlaying, fetchTrending } from "./utils/apiRequests";
 
 export default function App() {
   const trendingQuery = useQuery({
-    queryKey: ["trending"],
+    queryKey: ["Trending"],
     queryFn: fetchTrending,
   });
   const nowPlaying = useQuery({

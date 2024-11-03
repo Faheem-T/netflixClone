@@ -8,6 +8,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PreviewModal } from "./PreviewModal.jsx";
 import { TitlePage } from "./TitlePage.jsx";
 
+import "../auth/auth_google_provider_create.js";
+
 // React Query Client
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 1000 * 60 * 60 } },

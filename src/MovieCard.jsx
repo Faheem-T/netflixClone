@@ -8,7 +8,7 @@ export function MovieCard({ movie }) {
     <div className="flex-shrink-0 h-80">
       <Link
         to={`/title/${movie.media_type ?? "movie"}/${movie.id}`}
-        state={{ movie: movie }}
+        state={{ movie }}
       >
         <img
           src={`${secure_base_url}${poster_size}${movie.poster_path}`}
