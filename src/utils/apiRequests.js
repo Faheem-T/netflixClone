@@ -5,7 +5,6 @@
 
 export async function fetchFromAPI(params = "trending/all/day") {
   const url = `https://api.themoviedb.org/3/${params}?language=en-US`;
-  console.log(url);
   return fetch(url, options)
     .then((res) => res.json())
     .then((data) => data.results)
