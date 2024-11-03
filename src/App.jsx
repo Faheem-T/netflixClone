@@ -1,23 +1,31 @@
 import { Category } from "./Category";
 import { HeroComponent } from "./HeroComponent";
 import { useQuery } from "@tanstack/react-query";
-import { fetchTrending } from "./utils/apiRequests";
+import { fetchNowPlaying, fetchTrending } from "./utils/apiRequests";
 
 export default function App() {
   const trendingQuery = useQuery({
     queryKey: ["trending"],
     queryFn: fetchTrending,
   });
+  const nowPlaying = useQuery({
+    queryKey: ["Now playing"],
+    queryFn: fetchNowPlaying,
+  });
   if (trendingQuery.isError) return <div>{trendingQuery.error.json}</div>;
   if (trendingQuery.isLoading) return <div>Loading...</div>;
 
+  if (nowPlaying.isError) return <div>{nowPlaying.error.json}</div>;
+  if (nowPlaying.isLoading) return <div>Loading...</div>;
+
   // Randomly choosing one of the trending titles as the hero title
   const heroTitleId = Math.floor(Math.random() * trendingQuery.data.length);
-  console.log(trendingQuery.data);
+  console.log(nowPlaying.data);
   return (
     <>
       <HeroComponent heroMovie={trendingQuery.data[heroTitleId]} />
       <Category categoryName={"Trending"} categoryTitles={trendingQuery.data} />
+      <Category categoryName={"Now Playing"} categoryTitles={nowPlaying.data} />
     </>
   );
 }

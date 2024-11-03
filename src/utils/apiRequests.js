@@ -1,14 +1,30 @@
 export async function fetchTrending() {
+  const url = "https://api.themoviedb.org/3/trending/all/day?language=en-US";
   return fetch(url, options)
-    .then((response) => response.json())
-    .then((data) => {
-      const results = data.results;
-      return results;
-    })
+    .then((res) => res.json())
+    .then((data) => data.results)
     .catch((err) => err.json());
 }
 
-const url = "https://api.themoviedb.org/3/trending/all/day?language=en-US";
+export async function fetchNowPlaying() {
+  const url =
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+
+  return fetch(url, options)
+    .then((res) => res.json())
+    .then((data) => data.results)
+    .catch((err) => err.json());
+}
+
+export async function fetchVideo(id, type) {
+  const url = `https://api.themoviedb.org/3/${type}/${id}/videos?language=en-US`;
+
+  return fetch(url, options)
+    .then((res) => res.json())
+    .then((data) => data.results)
+    .catch((err) => err.json());
+}
+
 const options = {
   method: "GET",
   headers: {
