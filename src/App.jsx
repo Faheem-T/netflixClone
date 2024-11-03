@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useState } from "react";
 
 import "./index.css";
 
@@ -8,6 +9,7 @@ import { Home } from "./Homepage.jsx";
 import { TitlePage } from "./TitlePage.jsx";
 import { LoginPage } from "./LoginPage.jsx";
 import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
+import { UserContext } from "./contexts/UserContext.js";
 
 // React Query Client
 const queryClient = new QueryClient({
@@ -15,17 +17,20 @@ const queryClient = new QueryClient({
 });
 
 export function App() {
+  const [user, setUser] = useState(null);
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/title/:type/:id" element={<TitlePage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <UserContext.Provider value={{ user, setUser }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/title/:type/:id" element={<TitlePage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

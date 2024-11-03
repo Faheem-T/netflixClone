@@ -1,13 +1,7 @@
 import { Category } from "./Category";
 import { HeroComponent } from "./HeroComponent";
 import { useQuery } from "@tanstack/react-query";
-import {
-  fetchFromAPI,
-  fetchNowPlaying,
-  fetchTrending,
-} from "./utils/apiRequests";
-import { getAuth } from "firebase/auth";
-import { redirect } from "react-router-dom";
+import { fetchNowPlaying, fetchTrending } from "./utils/apiRequests";
 
 export function Home() {
   const trendingQuery = useQuery({

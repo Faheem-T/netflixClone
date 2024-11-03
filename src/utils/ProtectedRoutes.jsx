@@ -1,10 +1,11 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 export function ProtectedRoutes() {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     const auth = getAuth();
@@ -13,7 +14,7 @@ export function ProtectedRoutes() {
       setLoading(false);
     });
     return () => unsubscribe();
-  });
+  }, []);
   if (loading) return <div>Loading...</div>;
   return user ? <Outlet /> : <Navigate to="/login" />;
 }
