@@ -1,7 +1,11 @@
 import { Category } from "./Category";
 import { HeroComponent } from "./HeroComponent";
 import { useQuery } from "@tanstack/react-query";
-import { fetchNowPlaying, fetchTrending } from "./utils/apiRequests";
+import {
+  fetchFromAPI,
+  fetchNowPlaying,
+  fetchTrending,
+} from "./utils/apiRequests";
 
 export default function App() {
   const trendingQuery = useQuery({
