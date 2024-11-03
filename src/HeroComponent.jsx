@@ -9,13 +9,13 @@ export function HeroComponent({ heroMovie }) {
   return (
     <div
       className={
-        " bg-left bg-[length:125%] hover:bg-[length:130%] transition-all duration-700"
+        " bg-right-top bg-[length:85%] hover:bg-[length:90%] transition-all duration-700 bg-no-repeat"
       }
       style={{
         backgroundImage: `url(${secure_base_url}${backdrop_size}${heroMovie.backdrop_path})`,
       }}
     >
-      <div className="w-full h-full bg-gradient-to-r from-black/100 via-black/80 to-transparent">
+      <div className="w-full h-full bg-gradient-to-r from-black/100 via-black/90 to-transparent">
         <div className="w-full h-full bg-gradient-to-t from-black/100 via-black/0 to-transparent p-4">
           <Header />
           <HeroMovie movie={heroMovie} />
