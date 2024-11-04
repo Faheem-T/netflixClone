@@ -3,7 +3,7 @@ import { MovieCard } from "./MovieCard";
 import { fetchFromAPI } from "./utils/apiRequests";
 import { Loading } from "./Loading";
 import { HeroComponent } from "./HeroComponent";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export function Category({ queryKey, pathParams, queryParams }) {
   const categoryQuery = useQuery({
@@ -13,13 +13,12 @@ export function Category({ queryKey, pathParams, queryParams }) {
   const categoryRef = useRef(null);
 
   if (categoryQuery.isError) return <div>{categoryQuery.error.json}</div>;
-  if (categoryQuery.isLoading) return <Loading componentName={queryKey} />;
   const categoryTitles = categoryQuery.data;
 
   // Rendering Hero Component if current Category is "Trending"
   let renderHero = false;
   let heroTitleId;
-  if (queryKey === "All Trending") {
+  if (queryKey === "All Trending" && !categoryQuery.isLoading) {
     renderHero = true;
     // Randomly choosing one of the trending titles as the hero title
     heroTitleId = Math.floor(Math.random() * categoryTitles.length);
@@ -62,9 +61,15 @@ export function Category({ queryKey, pathParams, queryParams }) {
                 />
               </svg>
             </button>
-            {categoryTitles.map((title) => (
-              <MovieCard movie={title} key={title.id} />
-            ))}
+            {categoryQuery.isLoading ? (
+              <Loading componentName={queryKey} />
+            ) : (
+              <>
+                {categoryTitles.map((title) => (
+                  <MovieCard movie={title} key={title.id} />
+                ))}
+              </>
+            )}
             {/*right button */}
             <button
               className="top-[40%] absolute z-10 right-8 hover:text-gray-600"
