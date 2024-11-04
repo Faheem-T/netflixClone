@@ -1,11 +1,13 @@
+import { Categories } from "./Categories";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { apiURLs } from "./utils/apiURLs";
 
 export function TVPage() {
-  const tvEnpoints = apiURLs.find((item) => item.type === "tv");
   return (
-    <>
+    <div className="p-4">
       <Header />
-    </>
+      <Categories category={"tv"} />
+      <Footer />
+    </div>
   );
 }

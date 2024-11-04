@@ -1,22 +1,10 @@
-import { Category } from "./Category";
+import { Categories } from "./Categories";
 import { Footer } from "./Footer";
-import { apiURLs } from "./utils/apiURLs";
 
 export function Home() {
   return (
     <div className="flex flex-col h-full w-full">
-      {apiURLs.map((item) => {
-        if (item.type.includes("home")) {
-          return (
-            <Category
-              queryKey={item.queryKey}
-              key={item.queryKey}
-              pathParams={item.pathParams}
-              queryParams={item.queryParams ?? ""}
-            />
-          );
-        }
-      })}
+      <Categories category={"home"} />
       <Footer />
     </div>
   );
