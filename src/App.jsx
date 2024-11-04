@@ -12,6 +12,7 @@ import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
 import { UserContext } from "./contexts/UserContext.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Loading } from "./Loading.jsx";
+import { TVPage } from "./TVPage.jsx";
 
 // React Query Client
 const queryClient = new QueryClient({
@@ -41,6 +42,7 @@ export function App() {
             <Route element={<ProtectedRoutes />}>
               <Route path="/" element={<Home />} />
               <Route path="/title/:type/:id" element={<TitlePage />} />
+              <Route path="/tv" element={<TVPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

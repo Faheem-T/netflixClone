@@ -1,28 +1,26 @@
 import { Category } from "./Category";
 import { Footer } from "./Footer";
+import { apiURLs } from "./utils/apiURLs";
 
 export function Home() {
   return (
     <div className="flex flex-col h-full w-full">
-      {/*"Trending" Also renders the Hero Component*/}
-      {homePageCategories.map((category) => (
-        <Category queryKey={category} key={category} />
-      ))}
+      {apiURLs.map((item) => {
+        if (item.type.includes("home")) {
+          return (
+            <Category
+              queryKey={item.queryKey}
+              key={item.queryKey}
+              pathParams={item.pathParams}
+              queryParams={item.queryParams ?? ""}
+            />
+          );
+        }
+      })}
       <Footer />
     </div>
   );
 }
-
-const homePageCategories = [
-  "All Trending",
-  "Trending TV Shows",
-  "Top Rated Movies",
-  "Top Rated TV Shows",
-  "Now Playing",
-  "TV Shows Airing Today",
-  "Trending Movies",
-  "Popular TV",
-];
 
 const configs = {
   images: {

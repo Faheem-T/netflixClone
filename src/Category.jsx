@@ -6,11 +6,11 @@ import { Loading } from "./Loading";
 import { HeroComponent } from "./HeroComponent";
 
 // export function Category({ categoryName, categoryTitles }) {
-export function Category({ queryKey }) {
+export function Category({ queryKey, pathParams, queryParams }) {
   // get params and query (if existing) from apiURLs
-  const foundApiURL = apiURLs.find((item) => item.queryKey === queryKey);
-  if (!foundApiURL) return <div>{queryKey} not found</div>;
-  const { pathParams, queryParams } = foundApiURL;
+  // const foundApiURL = apiURLs.find((item) => item.queryKey === queryKey);
+  // if (!foundApiURL) return <div>{queryKey} not found</div>;
+  // const { pathParams, queryParams } = foundApiURL;
   const categoryQuery = useQuery({
     queryKey: [queryKey],
     queryFn: () => fetchFromAPI({ pathParams, queryParams }),
