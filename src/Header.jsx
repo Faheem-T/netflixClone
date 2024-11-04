@@ -11,14 +11,18 @@ export function Header() {
       <Link to="/">
         <img src={netflixLogoURL} className="h-8" />
       </Link>
-      <Link to="/">Home</Link>
-      <Link to="/tv">TV Shows</Link>
-      <Link to="/movies">Movies</Link>
-      <Link to="/new">New & Popular</Link>
-      <button className="ml-auto" onClick={logOut}>
-        Log Out
-      </button>
-      <img src={user.photoURL} className="rounded-full w-12" />
+      {user && (
+        <>
+          <Link to="/">Home</Link>
+          <Link to="/tv">TV Shows</Link>
+          <Link to="/movies">Movies</Link>
+          <Link to="/new">New & Popular</Link>
+          <button className="ml-auto" onClick={logOut}>
+            Log Out
+          </button>
+          <img src={user.photoURL} className="rounded-full w-12" />
+        </>
+      )}
     </div>
   );
 }
