@@ -7,6 +7,11 @@ export function Categories({ category }) {
   return (
     <div className="flex flex-col h-full w-full">
       {category !== "home" && <Header />}
+      {category !== "home" && (
+        <div className="text-center font-black text-6xl m-32">
+          {category.toUpperCase()}
+        </div>
+      )}
       {apiURLs.map((item) => {
         if (item.type.includes(category)) {
           return (
