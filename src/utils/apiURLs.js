@@ -2,7 +2,7 @@ export const apiURLs = [
   {
     queryKey: "All Trending",
     pathParams: "trending/all/day",
-    type: ["all", "home", "new"], // type can be either movie / tv / all
+    type: ["all", "home"], // type can be either movie / tv / all
   },
   {
     queryKey: "Trending TV Shows",

@@ -14,6 +14,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Loading } from "./Loading.jsx";
 import { TVPage } from "./TVPage.jsx";
 import { MoviePage } from "./MoviePage.jsx";
+import { NewTrending } from "./NewTrending.jsx";
 
 // React Query Client
 const queryClient = new QueryClient({
@@ -45,6 +46,7 @@ export function App() {
               <Route path="/title/:type/:id" element={<TitlePage />} />
               <Route path="/tv" element={<TVPage />} />
               <Route path="/movies" element={<MoviePage />} />
+              <Route path="/new" element={<NewTrending />} />
             </Route>
           </Routes>
         </BrowserRouter>
