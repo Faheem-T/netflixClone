@@ -1,13 +1,7 @@
 import { Categories } from "./Categories";
-import { Footer } from "./Footer";
 
 export function Home() {
-  return (
-    <div className="flex flex-col h-full w-full">
-      <Categories category={"home"} />
-      <Footer />
-    </div>
-  );
+  return <Categories category={"home"} />;
 }
 
 const configs = {

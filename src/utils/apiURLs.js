@@ -2,7 +2,7 @@ export const apiURLs = [
   {
     queryKey: "All Trending",
     pathParams: "trending/all/day",
-    type: ["all", "home"], // type can be either movie / tv / all
+    type: ["all", "home", "new"], // type can be either movie / tv / all
   },
   {
     queryKey: "Trending TV Shows",
@@ -22,7 +22,7 @@ export const apiURLs = [
   {
     queryKey: "Now Playing",
     pathParams: "movie/now_playing",
-    type: ["movie", "home"],
+    type: ["movie", "home", "new"],
   },
   {
     queryKey: "TV Shows Airing Today",
@@ -48,12 +48,12 @@ export const apiURLs = [
   {
     queryKey: "On The Air",
     pathParams: "tv/on_the_air",
-    type: ["tv"],
+    type: ["tv", "new"],
   },
   {
     queryKey: "Upcoming Movies",
     pathParams: "movie/upcoming",
-    type: ["movie"],
+    type: ["movie", "new"],
   },
   {
     queryKey: "",

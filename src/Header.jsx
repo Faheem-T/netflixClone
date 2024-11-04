@@ -7,7 +7,7 @@ const netflixLogoURL = import.meta.env.VITE_NETFLIX_LOGO_FULL_URL;
 export function Header() {
   const { user } = useContext(UserContext);
   return (
-    <div className="flex gap-4 items-center my-4 font-bold">
+    <div className="flex gap-4 items-center my-4 font-bold p-4">
       <Link to="/">
         <img src={netflixLogoURL} className="h-8" />
       </Link>

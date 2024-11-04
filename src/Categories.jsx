@@ -1,9 +1,12 @@
 import { Category } from "./Category";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 import { apiURLs } from "./utils/apiURLs";
 
 export function Categories({ category }) {
   return (
-    <>
+    <div className="flex flex-col h-full w-full">
+      {category !== "home" && <Header />}
       {apiURLs.map((item) => {
         if (item.type.includes(category)) {
           return (
@@ -16,6 +19,7 @@ export function Categories({ category }) {
           );
         }
       })}
-    </>
+      <Footer />
+    </div>
   );
 }
