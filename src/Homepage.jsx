@@ -1,39 +1,26 @@
 import { Category } from "./Category";
-import { HeroComponent } from "./HeroComponent";
-import { useQuery } from "@tanstack/react-query";
-import { fetchNowPlaying, fetchTrending } from "./utils/apiRequests";
-import { useContext } from "react";
-import { UserContext } from "./contexts/UserContext";
-import { Loading } from "./Loading";
 
 export function Home() {
-  const { user } = useContext(UserContext);
-  console.log(user);
-
-  const trendingQuery = useQuery({
-    queryKey: ["Trending"],
-    queryFn: fetchTrending,
-  });
-  const nowPlaying = useQuery({
-    queryKey: ["Now playing"],
-    queryFn: fetchNowPlaying,
-  });
-  if (trendingQuery.isError) return <div>{trendingQuery.error.json}</div>;
-  if (trendingQuery.isLoading) return <Loading />;
-
-  if (nowPlaying.isError) return <div>{nowPlaying.error.json}</div>;
-  if (nowPlaying.isLoading) return <Loading />;
-
-  // Randomly choosing one of the trending titles as the hero title
-  const heroTitleId = Math.floor(Math.random() * trendingQuery.data.length);
   return (
-    <>
-      <HeroComponent heroMovie={trendingQuery.data[heroTitleId]} />
-      <Category categoryName={"Trending"} categoryTitles={trendingQuery.data} />
-      <Category categoryName={"Now Playing"} categoryTitles={nowPlaying.data} />
-    </>
+    <div className="flex flex-col h-full w-full">
+      {/*"Trending" Also renders the Hero Component*/}
+      {homePageCategories.map((category) => (
+        <Category queryKey={category} key={category} />
+      ))}
+    </div>
   );
 }
+
+const homePageCategories = [
+  "All Trending",
+  "Trending TV Shows",
+  "Top Rated Movies",
+  "Top Rated TV Shows",
+  "Now Playing",
+  "TV Shows Airing Today",
+  "Trending Movies",
+  "Popular TV",
+];
 
 const configs = {
   images: {

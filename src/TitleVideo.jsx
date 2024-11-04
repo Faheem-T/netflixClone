@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchVideo } from "./utils/apiRequests";
+import { Loading } from "./Loading";
 
 export function TitleVideo({ id, type }) {
   const videoQuery = useQuery({
@@ -8,7 +9,7 @@ export function TitleVideo({ id, type }) {
   });
 
   if (videoQuery.isError) return <div>{videoQuery.error.json}</div>;
-  if (videoQuery.isLoading) return <div>Loading Video...</div>;
+  if (videoQuery.isLoading) return <Loading componentName="Trailer" />;
 
   console.log(videoQuery.data);
   return (

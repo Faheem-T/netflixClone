@@ -1,25 +1,13 @@
-// params:
-//  video: "${type}/${id}/videos"
-//  trending: "trending/all/day"
-//  nowPlaying: "movie/now_playing"
-
-export async function fetchFromAPI(params = "trending/all/day") {
-  const url = `https://api.themoviedb.org/3/${params}?language=en-US`;
+export async function fetchFromAPI({ pathParams, queryParams = "" }) {
+  const url = `https://api.themoviedb.org/3/${pathParams}?language=en-US${queryParams}`;
   return fetch(url, options)
     .then((res) => res.json())
     .then((data) => data.results)
     .catch((err) => err.json());
 }
-export async function fetchTrending() {
-  return fetchFromAPI("trending/all/day");
-}
-
-export async function fetchNowPlaying() {
-  return fetchFromAPI("movie/now_playing");
-}
 
 export async function fetchVideo(id, type) {
-  return fetchFromAPI(type + "/" + id + "/videos");
+  return fetchFromAPI({ pathParams: type + "/" + id + "/videos" });
 }
 
 const options = {
