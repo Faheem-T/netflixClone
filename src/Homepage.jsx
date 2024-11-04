@@ -1,4 +1,5 @@
 import { Category } from "./Category";
+import { Footer } from "./Footer";
 
 export function Home() {
   return (
@@ -7,6 +8,7 @@ export function Home() {
       {homePageCategories.map((category) => (
         <Category queryKey={category} key={category} />
       ))}
+      <Footer />
     </div>
   );
 }
