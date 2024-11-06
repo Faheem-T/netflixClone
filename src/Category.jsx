@@ -12,6 +12,8 @@ export function Category({ queryKey, pathParams, queryParams }) {
   });
   const categoryRef = useRef(null);
 
+  if (categoryQuery.isLoading) return <div></div>;
+
   if (categoryQuery.isError) return <div>{categoryQuery.error.json}</div>;
   const categoryTitles = categoryQuery.data;
 
@@ -61,16 +63,16 @@ export function Category({ queryKey, pathParams, queryParams }) {
                 />
               </svg>
             </button>
-            {categoryQuery.isLoading ? (
+            {/* {categoryQuery.isLoading ? (
               // <Loading componentName={queryKey} />
               <div></div>
-            ) : (
-              <>
-                {categoryTitles.map((title) => (
-                  <MovieCard movie={title} key={title.id} />
-                ))}
-              </>
-            )}
+            ) : ( */}
+            {/* <> */}
+            {categoryTitles.map((title) => (
+              <MovieCard movie={title} key={title.id} />
+            ))}
+            {/* </> */}
+            {/* )} */}
             {/*right button */}
             <button
               className="top-[40%] absolute z-10 right-8 hover:text-gray-600"
