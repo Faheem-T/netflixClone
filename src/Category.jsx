@@ -62,7 +62,8 @@ export function Category({ queryKey, pathParams, queryParams }) {
               </svg>
             </button>
             {categoryQuery.isLoading ? (
-              <Loading componentName={queryKey} />
+              // <Loading componentName={queryKey} />
+              <div></div>
             ) : (
               <>
                 {categoryTitles.map((title) => (
